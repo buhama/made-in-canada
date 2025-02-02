@@ -50,7 +50,7 @@ function App() {
         </div>
 
         <div className="bg-white rounded-xl shadow-xl p-6 mb-8">
-          <form onSubmit={handleSubmit} className="flex gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
@@ -64,7 +64,7 @@ function App() {
             <button
               type="submit"
               disabled={isLoading || !inputProduct}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-center  flex items-center justify-center rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed  gap-2"
             >
               {isLoading ? (
                 <>
