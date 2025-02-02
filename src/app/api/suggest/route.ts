@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       messages: [
         {
           role: "system",
-          content: "You are a helpful assistant that suggests Canadian-made alternatives to products. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Dont use markdown or any other formatting"
+          content: "You are a helpful assistant that suggests Canadian-made alternatives to products. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Dont use markdown or any other formatting. Provide around 5 alternatives."
         },
         {
           role: "user",

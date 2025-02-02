@@ -50,6 +50,9 @@ function App() {
         </div>
 
         <div className="bg-white rounded-xl shadow-xl p-6 mb-8">
+          <p className="text-sm text-gray-600 mb-3">
+            Try specifying your location for local alternatives, i.e. "Coffee in London, ON"
+          </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
