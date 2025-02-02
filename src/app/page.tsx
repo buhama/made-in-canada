@@ -86,7 +86,7 @@ function App() {
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               Canadian Alternative
             </h2>
-            <p className="text-gray-700">{result}</p>
+            <div className="text-gray-700 space-y-4" dangerouslySetInnerHTML={{ __html: result }} />
             <p className="mt-4 text-sm text-gray-500 italic">
               Disclaimer: The suggestions provided are meant to serve as a starting point for your research. 
               Product availability, manufacturing locations, and company information may change over time. 
