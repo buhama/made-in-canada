@@ -84,6 +84,11 @@ function App() {
               Canadian Alternative
             </h2>
             <p className="text-gray-700">{result}</p>
+            <p className="mt-4 text-sm text-gray-500 italic">
+              Disclaimer: The suggestions provided are meant to serve as a starting point for your research. 
+              Product availability, manufacturing locations, and company information may change over time. 
+              We recommend verifying the current information directly with the manufacturers or retailers.
+            </p>
           </div>
         )}
 
