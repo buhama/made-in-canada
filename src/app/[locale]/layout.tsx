@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import LanguageSelector from "@/components/LanguageSelector";
+import { CSPostHogProvider } from "../provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,11 +51,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-          <div className="relative">
-            {children}
-          </div>
-        </NextIntlClientProvider>
+        <CSPostHogProvider>
+          <NextIntlClientProvider messages={messages}>
+            <div className="relative">
+              {children}
+            </div>
+          </NextIntlClientProvider>
+        </CSPostHogProvider>
         <Analytics />
       </body>
     </html>
