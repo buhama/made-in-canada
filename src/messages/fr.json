@@ -37,5 +37,12 @@
   "City": "Ville",
   "Province": "Province",
   "Enter your city": "Entrez votre ville",
-  "Enter your province": "Entrez votre province"
+  "Enter your province": "Entrez votre province",
+  "share": "Partager",
+  "shareResult": "Partager le résultat",
+  "yourSearch": "Votre recherche",
+  "downloadImage": "Télécharger l'image",
+  "copyLink": "Copier le lien",
+  "preview": "Aperçu",
+  "generating": "Génération..."
 } 

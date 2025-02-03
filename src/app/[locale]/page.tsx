@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Search, MapPin, Loader2 } from 'lucide-react';
+import { Search, MapPin, Loader2, Share2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
+import ShareModal from '@/components/share-modal';
 
 function App() {
   const t = useTranslations();
@@ -14,6 +15,7 @@ function App() {
   const [province, setProvince] = useState('');
   const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const locale = useLocale();
 
@@ -166,9 +168,18 @@ function App() {
 
         {result && (
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-600">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              {t('canadianAlternative')}
-            </h2>
+            <div className="flex justify-between items-start mb-2">
+              <h2 className="text-xl font-semibold text-gray-900">
+                {t('canadianAlternative')}
+              </h2>
+              <button
+                onClick={() => setIsShareModalOpen(true)}
+                className="flex items-center gap-2 text-red-600 hover:text-red-700 transition"
+              >
+                <Share2 className="h-5 w-5" />
+                {t('share')}
+              </button>
+            </div>
             <div className="text-gray-700 space-y-4" dangerouslySetInnerHTML={{ __html: result }} />
             <p className="mt-4 text-sm text-gray-500 italic">
               {t('disclaimer')}
@@ -210,6 +221,13 @@ function App() {
             {t('Support this project')}
           </a>
         </div>
+
+        <ShareModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          prompt={inputProduct}
+          result={result}
+        />
       </div>
     </div>
   );

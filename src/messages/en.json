@@ -37,5 +37,12 @@
   "City": "City",
   "Province": "Province",
   "Enter your city": "Enter your city",
-  "Enter your province": "Enter your province"
+  "Enter your province": "Enter your province",
+  "share": "Share",
+  "shareResult": "Share Result",
+  "yourSearch": "Your Search",
+  "downloadImage": "Download Image",
+  "copyLink": "Copy Link",
+  "preview": "Preview",
+  "generating": "Generating..."
 } 
