@@ -5,6 +5,7 @@ import { Search, MapPin, Loader2, Share2 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ShareModal from '@/components/share-modal';
+import posthog from 'posthog-js';
 
 function App() {
   const t = useTranslations();
@@ -173,7 +174,12 @@ function App() {
                 {t('canadianAlternative')}
               </h2>
               <button
-                onClick={() => setIsShareModalOpen(true)}
+                onClick={() => {
+                  setIsShareModalOpen(true);
+                  posthog.capture('share_result', {
+                    prompt: inputProduct
+                  });
+                }}
                 className="flex items-center gap-2 text-red-600 hover:text-red-700 transition"
               >
                 <Share2 className="h-5 w-5" />

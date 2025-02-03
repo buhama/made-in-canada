@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { MapPin, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import html2canvas from 'html2canvas';
+import posthog from 'posthog-js';
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -44,6 +45,10 @@ export default function ShareModal({ isOpen, onClose, prompt, result }: ShareMod
 
   const downloadImage = () => {
     if (generatedImage) {
+      posthog.capture('download_image', {
+        prompt: prompt,
+      });
+      
       const link = document.createElement('a');
       link.href = generatedImage;
       link.download = 'made-in-canada-result.png';
