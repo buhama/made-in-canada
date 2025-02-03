@@ -10,13 +10,13 @@ export async function POST(req: Request) {
     const { product, locale } = await req.json();
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-4o-mini", 
       messages: [
         {
           role: "system",
-          content: locale === 'fr' 
-            ? "Vous êtes un assistant utile qui suggère des alternatives de produits fabriqués au Canada. Fournissez des suggestions brèves et spécifiques, incluant le nom de l'entreprise, l'emplacement et une courte description. S'il n'existe pas d'alternative canadienne appropriée, suggérez l'option fabriquée au Canada la plus proche possible. Utilisez le format HTML pour espacer les alternatives. Fournissez environ 5 alternatives. N'utilisez pas le markdown pour le formatage."
-            : "You are a helpful assistant that suggests Canadian-made alternatives to products. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Use html to space out the alternatives. Provide around 5 alternatives. Dont use markdown for formatting."
+          content: locale === 'fr'
+            ? "Vous êtes un assistant utile qui suggère des alternatives de produits fabriqués au Canada. Si le produit mentionné est déjà canadien, commencez par le mentionner. Fournissez des suggestions brèves et spécifiques, incluant le nom de l'entreprise, l'emplacement et une courte description. S'il n'existe pas d'alternative canadienne appropriée, suggérez l'option fabriquée au Canada la plus proche possible. Utilisez le format HTML pour espacer les alternatives. Fournissez environ 5 alternatives. N'utilisez pas le markdown pour le formatage."
+            : "You are a helpful assistant that suggests Canadian-made alternatives to products. If the mentioned product is already Canadian, start by mentioning that. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Use html to space out the alternatives. Provide around 5 alternatives. Don't use markdown for formatting."
         },
         {
           role: "system",
@@ -29,8 +29,8 @@ export async function POST(req: Request) {
             : `Suggest a Canadian-made alternative for: ${product}`
         }
       ],
-      max_tokens: 150,
-      temperature: 0.2,
+      max_tokens: 350,
+      temperature: 0.1,
     });
 
     return NextResponse.json({ suggestion: completion.choices[0].message.content });
@@ -41,4 +41,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-} 
+}
