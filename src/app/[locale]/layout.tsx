@@ -19,14 +19,7 @@ export const metadata: Metadata = {
     siteName: "Made in Canada",
     locale: "en_CA",
     type: "website",
-    images: [
-      {
-        url: "/og-image.png", // You'll need to add this image to your public folder
-        width: 1200,
-        height: 630,
-        alt: "Made in Canada Product Alternatives",
-      },
-    ],
+    images: '/og-image.png',
   },
   twitter: {
     card: "summary_large_image",
