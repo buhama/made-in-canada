@@ -117,7 +117,7 @@ function App() {
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-2">{t('whyChooseCanadian')}</h3>
+            <h3 className="text-lg font-semibold mb-2 text-black">{t('whyChooseCanadian')}</h3>
             <ul className="space-y-2 text-gray-600">
               <li>{t('benefits.support')}</li>
               <li>{t('benefits.reduce')}</li>
@@ -126,7 +126,7 @@ function App() {
             </ul>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-2">{t('popularCategories')}</h3>
+            <h3 className="text-lg font-semibold mb-2 text-black">{t('popularCategories')}</h3>
             <div className="flex flex-wrap gap-2">
               {Object.keys(t.raw('categories')).map((key) => (
                 <span key={key} className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm">
