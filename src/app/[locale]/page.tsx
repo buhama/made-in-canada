@@ -136,6 +136,19 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* Ko-fi Support Button */}
+        <div className="mt-8 text-center">
+          <a
+            href="https://ko-fi.com/buhama"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 hover:text-red-600 transition-colors duration-200 shadow-sm"
+          >
+            <img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi" className="h-5 w-5" />
+            {t('Support this project')}
+          </a>
+        </div>
       </div>
     </div>
   );
