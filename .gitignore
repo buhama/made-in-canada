@@ -37,3 +37,6 @@ next-env.d.ts
 
 .env
 .env.local
+
+/src/app/api/scrape/route.ts
+/src/app/scraping/constant.ts
