@@ -14,13 +14,13 @@ export async function POST(req: Request) {
       model: "gpt-4o-mini", 
       messages: [
         {
-          role: "system",
+          role: "developer",
           content: locale === 'fr'
             ? "Vous êtes un assistant utile qui suggère des alternatives de produits fabriqués au Canada. Si le produit mentionné est déjà canadien, commencez par le mentionner. Fournissez des suggestions brèves et spécifiques, incluant le nom de l'entreprise, l'emplacement et une courte description. S'il n'existe pas d'alternative canadienne appropriée, indiquez clairement qu'il n'y a pas de bonnes alternatives canadiennes disponibles pour ce produit pour le moment, et expliquez brièvement pourquoi si possible. Si une alternative n'est pas disponible dans la ville et/ou la province spécifiée, indiquez-le clairement et fournissez ensuite des alternatives pour l'emplacement le plus proche. Si des alternatives existent, utilisez le format HTML pour espacer les alternatives et fournissez jusqu'à 3 alternatives pertinentes. N'utilisez pas le markdown pour le formatage."
             : "You are a helpful assistant that suggests Canadian-made alternatives to products. If the mentioned product is already Canadian, start by mentioning that. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, clearly state that there are no good Canadian alternatives available for this product at the moment, and briefly explain why if possible. If an alternative is not available in the specified city and/or province, clearly state that and then provide alternatives for the next nearest location. If alternatives exist, use html to space out the alternatives and provide up to 3 relevant alternatives. Don't use markdown for formatting."
         },
         {
-          role: "system",
+          role: "developer",
           content: `Make sure your entire answer is in ${locale === 'fr' ? 'French' : 'English'}`
         },
         {
