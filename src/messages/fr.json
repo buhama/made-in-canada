@@ -33,5 +33,9 @@
   "Loading": "Chargement",
   "No results found": "Aucun résultat trouvé",
   "Try searching for something else": "Essayez de chercher autre chose",
-  "Support this project": "Soutenir ce projet"
+  "Support this project": "Soutenir ce projet",
+  "City": "Ville",
+  "Province": "Province",
+  "Enter your city": "Entrez votre ville",
+  "Enter your province": "Entrez votre province"
 } 

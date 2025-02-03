@@ -10,10 +10,28 @@ function App() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [inputProduct, setInputProduct] = useState('');
+  const [city, setCity] = useState('');
+  const [province, setProvince] = useState('');
   const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const locale = useLocale();
+
+  const provinces = [
+    'Alberta',
+    'British Columbia',
+    'Manitoba',
+    'New Brunswick',
+    'Newfoundland and Labrador',
+    'Nova Scotia',
+    'Ontario',
+    'Prince Edward Island',
+    'Quebec',
+    'Saskatchewan',
+    'Northwest Territories',
+    'Nunavut',
+    'Yukon'
+  ];
 
   const handleLanguageChange = (newLang: string) => {
     router.push(`/${newLang}`);
@@ -24,12 +42,20 @@ function App() {
     setIsLoading(true);
     
     try {
+      let product = inputProduct;
+      if (city && province) {
+        product = `${product} in ${city}, ${province}`;
+      } else if (city) {
+        product = `${product} in ${city}`;
+      } else if (province) {
+        product = `${product} in ${province}`;
+      }
       const response = await fetch('/api/suggest', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ product: inputProduct, locale: locale }),
+        body: JSON.stringify({ product: product, locale: locale }),
       });
 
       if (!response.ok) {
@@ -75,8 +101,8 @@ function App() {
           <p className="text-sm text-gray-600 mb-3">
             {t('locationTip')}
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
-            <div className="relative flex-1">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
@@ -86,10 +112,45 @@ function App() {
                 className="w-full text-black pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
               />
             </div>
+            
+            <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex-1">
+                <label htmlFor="city" className="block text-sm text-gray-500 mb-1">
+                  {t('City')} <span className="text-gray-400">{t('(Optional)')}</span>
+                </label>
+                <input
+                  type="text"
+                  id="city"
+                  className="w-full text-black px-4 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
+                  placeholder={t('Enter your city')}
+                  onChange={(e) => setCity(e.target.value)}
+                  value={city}
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="province" className="block text-sm text-gray-500 mb-1">
+                  {t('Province')} <span className="text-gray-400">{t('(Optional)')}</span>
+                </label>
+                <select
+                  id="province"
+                  className="w-full text-black px-4 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
+                  onChange={(e) => setProvince(e.target.value)}
+                  value={province}
+                >
+                  <option value="">{t('Select a province')}</option>
+                  {provinces.map((prov) => (
+                    <option key={prov} value={prov}>
+                      {prov}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <button
               type="submit"
               disabled={isLoading || !inputProduct}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-center flex items-center justify-center rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed gap-2"
+              className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-center flex items-center justify-center rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed gap-2"
             >
               {isLoading ? (
                 <>
