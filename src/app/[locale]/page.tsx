@@ -131,7 +131,12 @@ function App() {
                   id="city"
                   className="w-full text-black px-4 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
                   placeholder={t('Enter your city')}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={(e) =>{
+                    if (e.target.value.length > 50) {
+                      return;
+                    }
+                    setCity(e.target.value)
+                  }}
                   value={city}
                 />
               </div>
