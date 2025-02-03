@@ -2,11 +2,22 @@
 
 import React, { useState } from 'react';
 import { Search, MapPin, Loader2 } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 function App() {
+  const t = useTranslations();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [inputProduct, setInputProduct] = useState('');
   const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const locale = useLocale();
+
+  const handleLanguageChange = (newLang: string) => {
+    router.push(`/${newLang}`);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +29,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ product: inputProduct }),
+        body: JSON.stringify({ product: inputProduct, locale: locale }),
       });
 
       if (!response.ok) {
@@ -42,16 +53,27 @@ function App() {
             <MapPin className="h-12 w-12 text-red-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Find Canadian Alternatives
+            {t('title')}
           </h1>
           <p className="text-lg text-gray-600">
-            Discover high-quality Canadian-made products as alternatives to your everyday items
+            {t('subtitle')}
           </p>
+        </div>
+
+        <div className="mb-4 flex justify-end">
+          <select
+            value={locale}
+            onChange={(e) => handleLanguageChange(e.target.value)}
+            className="block rounded-md border-gray-300 py-2 pl-3 pr-10 text-black text-base focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
+          >
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+          </select>
         </div>
 
         <div className="bg-white rounded-xl shadow-xl p-6 mb-8">
           <p className="text-sm text-gray-600 mb-3">
-            Try specifying your location for local alternatives, i.e. "Coffee in London, ON"
+            {t('locationTip')}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
@@ -60,22 +82,22 @@ function App() {
                 type="text"
                 value={inputProduct}
                 onChange={(e) => setInputProduct(e.target.value)}
-                placeholder="Enter a product (e.g., coffee, maple syrup)"
+                placeholder={t('inputPlaceholder')}
                 className="w-full text-black pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
               />
             </div>
             <button
               type="submit"
               disabled={isLoading || !inputProduct}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-center  flex items-center justify-center rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed  gap-2"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 text-center flex items-center justify-center rounded-lg font-medium transition disabled:opacity-50 disabled:cursor-not-allowed gap-2"
             >
               {isLoading ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  Searching...
+                  {t('searching')}
                 </>
               ) : (
-                'Find Alternative'
+                t('findAlternative')
               )}
             </button>
           </form>
@@ -84,33 +106,31 @@ function App() {
         {result && (
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-600">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Canadian Alternative
+              {t('canadianAlternative')}
             </h2>
             <div className="text-gray-700 space-y-4" dangerouslySetInnerHTML={{ __html: result }} />
             <p className="mt-4 text-sm text-gray-500 italic">
-              Disclaimer: The suggestions provided are meant to serve as a starting point for your research. 
-              Product availability, manufacturing locations, and company information may change over time. 
-              We recommend verifying the current information directly with the manufacturers or retailers.
+              {t('disclaimer')}
             </p>
           </div>
         )}
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-2">Why Choose Canadian?</h3>
+            <h3 className="text-lg font-semibold mb-2">{t('whyChooseCanadian')}</h3>
             <ul className="space-y-2 text-gray-600">
-              <li>✓ Support local businesses</li>
-              <li>✓ Reduce carbon footprint</li>
-              <li>✓ High quality standards</li>
-              <li>✓ Create Canadian jobs</li>
+              <li>{t('benefits.support')}</li>
+              <li>{t('benefits.reduce')}</li>
+              <li>{t('benefits.quality')}</li>
+              <li>{t('benefits.jobs')}</li>
             </ul>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-2">Popular Categories</h3>
+            <h3 className="text-lg font-semibold mb-2">{t('popularCategories')}</h3>
             <div className="flex flex-wrap gap-2">
-              {['Food & Beverage', 'Clothing', 'Home Goods', 'Beauty', 'Outdoor Gear'].map((category) => (
-                <span key={category} className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm">
-                  {category}
+              {Object.keys(t.raw('categories')).map((key) => (
+                <span key={key} className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm">
+                  {t(`categories.${key}`)}
                 </span>
               ))}
             </div>

@@ -7,18 +7,26 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
   try {
-    const { product } = await req.json();
+    const { product, locale } = await req.json();
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
-          content: "You are a helpful assistant that suggests Canadian-made alternatives to products. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Use html to space out the alternatives. Provide around 5 alternatives."
+          content: locale === 'fr' 
+            ? "Vous êtes un assistant utile qui suggère des alternatives de produits fabriqués au Canada. Fournissez des suggestions brèves et spécifiques, incluant le nom de l'entreprise, l'emplacement et une courte description. S'il n'existe pas d'alternative canadienne appropriée, suggérez l'option fabriquée au Canada la plus proche possible. Utilisez le format HTML pour espacer les alternatives. Fournissez environ 5 alternatives. N'utilisez pas le markdown pour le formatage."
+            : "You are a helpful assistant that suggests Canadian-made alternatives to products. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, suggest the closest possible Canadian-made option. Use html to space out the alternatives. Provide around 5 alternatives. Dont use markdown for formatting."
+        },
+        {
+          role: "system",
+          content: `Make sure your entire answer is in ${locale === 'fr' ? 'French' : 'English'}`
         },
         {
           role: "user",
-          content: `Suggest a Canadian-made alternative for: ${product}`
+          content: locale === 'fr'
+            ? `Suggérez une alternative fabriquée au Canada pour : ${product}`
+            : `Suggest a Canadian-made alternative for: ${product}`
         }
       ],
       max_tokens: 150,

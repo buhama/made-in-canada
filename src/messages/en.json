@@ -1,0 +1,36 @@
+{
+  "navigation": {
+    "language": "Language"
+  },
+  "title": "Find Canadian Alternatives",
+  "subtitle": "Discover high-quality Canadian-made products as alternatives to your everyday items",
+  "locationTip": "Try specifying your location for local alternatives, i.e. \"Coffee in London, ON\"",
+  "inputPlaceholder": "Enter a product (e.g., coffee, maple syrup)",
+  "findAlternative": "Find Alternative",
+  "searching": "Searching...",
+  "canadianAlternative": "Canadian Alternative",
+  "disclaimer": "Disclaimer: The suggestions provided are meant to serve as a starting point for your research. Product availability, manufacturing locations, and company information may change over time. We recommend verifying the current information directly with the manufacturers or retailers.",
+  "whyChooseCanadian": "Why Choose Canadian?",
+  "benefits": {
+    "support": "✓ Support local businesses",
+    "reduce": "✓ Reduce carbon footprint",
+    "quality": "✓ High quality standards",
+    "jobs": "✓ Create Canadian jobs"
+  },
+  "popularCategories": "Popular Categories",
+  "categories": {
+    "food": "Food & Beverage",
+    "clothing": "Clothing",
+    "home": "Home Goods",
+    "beauty": "Beauty",
+    "outdoor": "Outdoor Gear"
+  },
+  "Find Canadian Product Alternatives": "Find Canadian Product Alternatives",
+  "Discover high quality Canadian made alternatives to your everyday products Support local businesses reduce your carbon footprint and create Canadian jobs": "Discover high-quality Canadian-made alternatives to your everyday products. Support local businesses, reduce your carbon footprint, and create Canadian jobs.",
+  "Made in Canada": "Made in Canada",
+  "Search for a product": "Search for a product",
+  "Search": "Search",
+  "Loading": "Loading",
+  "No results found": "No results found",
+  "Try searching for something else": "Try searching for something else"
+} 

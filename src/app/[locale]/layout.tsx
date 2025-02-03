@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,15 +40,26 @@ export const metadata: Metadata = {
   themeColor: "#ef4444", // Matches your red theme
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-      <Analytics />
+      <body className={inter.className}>
+        <NextIntlClientProvider messages={messages}>
+          <div className="relative">
+            <div className="absolute top-4 right-4 z-50">
+              <LanguageSelector />
+            </div>
+            {children}
+          </div>
+        </NextIntlClientProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }

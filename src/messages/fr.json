@@ -1,0 +1,36 @@
+{
+  "navigation": {
+    "language": "Langue"
+  },
+  "title": "Trouvez des alternatives canadiennes",
+  "subtitle": "Découvrez des produits canadiens de haute qualité comme alternatives à vos articles quotidiens",
+  "locationTip": "Essayez de spécifier votre emplacement pour des alternatives locales, par ex. \"Café à London, ON\"",
+  "inputPlaceholder": "Entrez un produit (ex: café, sirop d'érable)",
+  "findAlternative": "Trouver une alternative",
+  "searching": "Recherche en cours...",
+  "canadianAlternative": "Alternative canadienne",
+  "disclaimer": "Avertissement : Les suggestions fournies sont destinées à servir de point de départ pour vos recherches. La disponibilité des produits, les lieux de fabrication et les informations sur les entreprises peuvent changer au fil du temps. Nous vous recommandons de vérifier les informations actuelles directement auprès des fabricants ou des détaillants.",
+  "whyChooseCanadian": "Pourquoi choisir canadien?",
+  "benefits": {
+    "support": "✓ Soutenir les entreprises locales",
+    "reduce": "✓ Réduire l'empreinte carbone",
+    "quality": "✓ Normes de qualité élevées",
+    "jobs": "✓ Créer des emplois canadiens"
+  },
+  "popularCategories": "Catégories populaires",
+  "categories": {
+    "food": "Alimentation & Boissons",
+    "clothing": "Vêtements",
+    "home": "Articles ménagers",
+    "beauty": "Beauté",
+    "outdoor": "Équipement plein air"
+  },
+  "Find Canadian Product Alternatives": "Trouvez des alternatives de produits canadiens",
+  "Discover high quality Canadian made alternatives to your everyday products Support local businesses reduce your carbon footprint and create Canadian jobs": "Découvrez des alternatives canadiennes de haute qualité à vos produits quotidiens. Soutenez les entreprises locales, réduisez votre empreinte carbone et créez des emplois canadiens.",
+  "Made in Canada": "Fabriqué au Canada",
+  "Search for a product": "Rechercher un produit",
+  "Search": "Rechercher",
+  "Loading": "Chargement",
+  "No results found": "Aucun résultat trouvé",
+  "Try searching for something else": "Essayez de chercher autre chose"
+} 
