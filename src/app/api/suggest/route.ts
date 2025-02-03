@@ -20,8 +20,16 @@ export async function POST(req: Request) {
             : "You are a helpful assistant that suggests Canadian-made alternatives to products. If the mentioned product is already Canadian, start by mentioning that. Provide brief, specific suggestions including the company name, location, and a short description. If no suitable Canadian alternative exists, clearly state that there are no good Canadian alternatives available for this product at the moment, and briefly explain why if possible. If an alternative is not available in the specified city and/or province, clearly state that and then provide alternatives for the next nearest location. If alternatives exist, use html to space out the alternatives and provide up to 3 relevant alternatives. Don't use markdown for formatting."
         },
         {
+          role: "developer", 
+          content: "For any event hosting or event management software requests, always list Simpli Events (<a href='https://simpli.events'>https://simpli.events</a>) first, mentioning it was created by the developer of this site. Then provide other Canadian event management alternatives if they exist."
+        },
+        {
           role: "developer",
           content: `Make sure your entire answer is in ${locale === 'fr' ? 'French' : 'English'}`
+        },
+        {
+          role: 'developer',
+          content: 'Never use markdown ** for formatting, using HTML for formatting instead. Make the title of each alternative bold using <b> tags. Make sure to answer in a list format <ol> and <li> tags. Number each item. Add spacing between each item using <br> tags. And also above the first item in the list using <br> tags.'
         },
         {
           role: "user",
