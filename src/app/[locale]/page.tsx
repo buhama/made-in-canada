@@ -110,7 +110,12 @@ function App() {
               <input
                 type="text"
                 value={inputProduct}
-                onChange={(e) => setInputProduct(e.target.value)}
+                onChange={(e) =>{
+                  if (e.target.value.length > 100) {
+                    return;
+                  }
+                  setInputProduct(e.target.value)
+                }}
                 placeholder={t('inputPlaceholder')}
                 className="w-full text-black pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition"
               />
